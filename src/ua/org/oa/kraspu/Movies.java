@@ -9,14 +9,14 @@ public class Movies {
   private String genres;  //жанр
   private int runtime;    //продолжительность
   private double rate;       //рейтинг
-  private ArrayList<Integer> rateCount;  //счетчик оценок (1-5)
+  private ArrayList<Integer> rateCount = new ArrayList<>();  //счетчик оценок (1-5)
 
   public Movies(){
     Scanner sc = new Scanner(System.in);
     System.out.print("Title: ");
-    this.title = sc.next();
+    this.title = sc.nextLine();
     System.out.print("\nGenre: ");
-    this.genres = sc.next();
+    this.genres = sc.nextLine();
     System.out.print("\nRuntime: ");
     this.runtime = sc.nextInt();
   }
@@ -27,12 +27,12 @@ public class Movies {
     this.runtime = runtime;
   }
 
-  public Movies(String title, String genres, int runtime, int rateCount) {
-    this.title = title;
-    this.genres = genres;
-    this.runtime = runtime;
-    this.setRateCount(rateCount);
-  }
+//  public Movies(String title, String genres, int runtime, int rateCount) {
+//    this.title = title;
+//    this.genres = genres;
+//    this.runtime = runtime;
+//    this.setRateCount(rateCount);
+//  }
 
   public String getTitle() {
 
@@ -69,7 +69,9 @@ public class Movies {
     for (int el : this.rateCount) {
       sum += el;
     }
-    return this.rate = sum / this.rateCount.size();
+    if (rateCount.size() != 0) {
+      return this.rate = sum / this.rateCount.size();
+    }else return 0;
   }
 
   public void setRateCount(int rateCount) {
